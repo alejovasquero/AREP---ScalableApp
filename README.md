@@ -4,8 +4,8 @@ Este proyecto consiste en la implementación de una arquitectura distribuida, ba
 la simple búsqueda de primos, con el objetivo de aumentar el uso de CPU,
 y crear escalamiento vertical en AWS.
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c04625b3c71d4d9a85d74496e50b7801)](https://www.codacy.com/manual/alejovasquero/AREP---DockerWeb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alejovasquero/AREP---DockerWeb&amp;utm_campaign=Badge_Grade)
-[![CircleCI](https://circleci.com/gh/alejovasquero/AREP---DockerWeb.svg?style=svg)](https://circleci.com/gh/alejovasquero/AREP---DockerWeb)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cb4b2a0799be478ba42eb1db5f3bb130)](https://www.codacy.com/gh/alejovasquero/AREP---ScalableApp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alejovasquero/AREP---ScalableApp&amp;utm_campaign=Badge_Grade)
+[![CircleCI](https://circleci.com/gh/alejovasquero/AREP---ScalableApp.svg?style=svg)](https://circleci.com/gh/alejovasquero/AREP---ScalableApp)
 
 ## Empezando
 
