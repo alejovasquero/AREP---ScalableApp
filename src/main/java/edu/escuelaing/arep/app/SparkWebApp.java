@@ -1,8 +1,9 @@
-package edu.escuelaing.arep.webserver.app;
-import edu.escuelaing.arep.webserver.app.util.PrimeFinder;
+package edu.escuelaing.arep.app;
+import edu.escuelaing.arep.app.util.PrimeFinder;
 import spark.Request;
 import spark.Response;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static spark.Spark.*;
@@ -31,10 +32,16 @@ public class SparkWebApp {
         return 4567; //returns default port if heroku-port isn't set (i.e. on localhost)
     }
 
-    private static List<Long> getPrimes(Request req, Response resp){
-        long a = Long.parseLong(req.queryParams("inf"));
-        long b = Long.parseLong(req.queryParams("sup"));
-        return PrimeFinder.primesInRange(a, b);
+    private static List<BigInteger> getPrimes(Request req, Response resp){
+        BigInteger a = new BigInteger(req.queryParams("inf"));
+        BigInteger b = new BigInteger(req.queryParams("sup"));
+        int threads ;
+        if(req.queryParams("threads") == null){
+            threads = 4*2;
+        } else {
+            threads = Integer.parseInt(req.queryParams("threads"));
+        }
+        return PrimeFinder.primesInRange(a, b, threads);
     }
 
 }

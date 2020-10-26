@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* edu.escuelaing.arep.webserver.app.SparkWebApp
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* SparkWebApp
