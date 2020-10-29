@@ -5,7 +5,7 @@
   <artifactId>ScalableApp</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>SparkWebApp</name>
+  <name>ScalableApp</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>

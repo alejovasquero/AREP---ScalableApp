@@ -1,4 +1,4 @@
-# Implementación de una distribuida
+# Implementación de una arquitectura distribuida
 
 Este proyecto consiste en la implementación de una arquitectura distribuida, basada en
 la simple búsqueda de primos, con el objetivo de aumentar el uso de CPU,
@@ -9,9 +9,120 @@ y crear escalamiento vertical en AWS.
 
 ## Empezando
 
-Estas instrucciones te utilizar la página web, compilar el proyecto y las pruebas.
-Las instrucciones se limitan a compilación, ejecución y uso. Vamos a ver la manera de hacer que el software funcione
-de manera local y por medio de Amazon Web Services.
+### Conexión a AWS
+
+Estas instrucciones muestran como compilar el proyecto, instalarlo en AWS, y
+comprobar la creación de instancias por medio de auto escalado en AWS.
+
+* En este ejercicio vamos a usar una imagen ya creada del proyecto en Docker Hub,
+por lo que la descarga de los ejecutables debería ser en una simple línea.
+* Primeros vamos a conectarnos a nuestra máquina en AWS.
+
+```console
+ssh -i <KEY> <USER>@<DIRECCIÓN>
+```
+
+* En nuestro caso de estudio
+
+```console
+ssh -i "AREP-FINAL.pem" ec2-user@ec2-3-88-27-149.compute-1.amazonaws.com
+```
+
+### Configuración de docker
+
+* Vamos a instalar docker en la máquina de AWS.
+
+```console
+sudo yum update -y
+sudo yum install docker
+```
+
+* Para que docker corra los contenedores al iniciar la máquina, vamos
+a usar ***systemctl***
+
+```console
+sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user
+```
+
+### Descarga de la imagen
+
+* Ahora, con docker configurado, vamos a correr la aplicación y configurar el puerto.
+
+```
+sudo docker run --restart=always -d -p 42000:6000 --name myapp alejovasquero/scalableapp
+```
+
+* Configuramos el puerto 42000 para que esté expuesto a la red.
+
+![](img/ports.PNG)
+
+* Comprobamos el funcionamiento por medio de curl.
+
+![](img/POSTINITIAL.PNG)
+
+### Creando una imagen de la máquina
+
+* Desde la consola de AWS, creamos una imagen, seleccionando nuestra máquina EC2.
+
+![](img/image.PNG)
+
+* Le ponemos un nombre a nuestra imagen.
+
+![](img/IMAGENAME.PNG)
+
+* Ahora vamos a crear una nueva configuración de lanzamiento desde la consola de AWS.
+
+![](img/auto.PNG)
+
+![](img/autoconfig.PNG) 
+
+* Ponemos nombre a nuestra configuración, y elegimos la imagen de la máquina seleccionada.
+
+![](img/LAUNCH1.PNG) 
+
+* Escogemos el grupo de seguridad que configuramos para recibir solicitudes de entrada.
+
+![](img/LAUNCH2.PNG)
+
+* Usamos las llaves que creamos de inicio y creamos la configuración.
+
+![](img/LAUNCH3.PNG)
+
+### Creando un grupo de autoescalamiento.
+
+* Desde la cnsola de autoescalamiento, vamos a crear un grupo con la configuración creada.
+
+![](img/group.PNG)
+
+* Verificamos los datos del grupo, como el AMI, grupo de seguridad y nombre.
+
+![](img/group2.PNG)
+
+* Configuramos las redes sobre las que AWS va a crear las nuevas instancias. 
+
+![](img/group3.PNG)
+
+* Seleccionamos la cantidad de instancias que queremos crear dado un umbral de uso de CPU.
+
+![](img/group4.PNG)
+
+* Ahora podemos crear la regla de auto scaling.
+
+### Comprobación
+
+* Vamos a mandar una solicitud que pedirá bastante uso de CPU. Esta solicitud busca números primos 
+por fuerza bruta en un intervalo dado, por medio de concurrencia.
+
+![](img/test.PNG)
+
+* Desde AWS, podemos ver el incremento en el uso de CPU.
+
+![](img/usage.PNG)
+
+* Además podemos ver la creación automática de más instancias.
+
+![](img/working.PNG)
 
 ### Prerrequisitos 
 
