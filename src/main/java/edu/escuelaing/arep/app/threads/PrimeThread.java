@@ -11,6 +11,12 @@ public class PrimeThread extends Thread {
     private BigInteger sup;
     private List<BigInteger> result;
 
+    /**
+     * Constructor de hilos de búsqueda de números primos
+     * @param a Limite inferior de búsqueda
+     * @param b Limite superior de búsqueda
+     * @param set Estructura donde se van a guardar las respuestas encontradas
+     */
     public PrimeThread(BigInteger a, BigInteger b, List<BigInteger> set){
         this.inf = a;
         this.sup = b;
@@ -18,6 +24,9 @@ public class PrimeThread extends Thread {
         System.out.println(inf + " - "+sup);
     }
 
+    /**
+     * Búsqueda constante de números primos en un rango dado por el constructor
+     */
     @Override
     public void run() {
         BigInteger a=inf;

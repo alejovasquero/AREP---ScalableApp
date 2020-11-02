@@ -32,6 +32,12 @@ public class SparkWebApp {
         return 4567; //returns default port if heroku-port isn't set (i.e. on localhost)
     }
 
+    /**
+     * Prepara la respuesta para la solicitud, por medio de parámetros de consulta
+     * @param req Request del usuario
+     * @param resp Respuesta para el usuario
+     * @return Lista de númwros primos en el rango dado
+     */
     private static List<BigInteger> getPrimes(Request req, Response resp){
         BigInteger a = new BigInteger(req.queryParams("inf"));
         BigInteger b = new BigInteger(req.queryParams("sup"));

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"edu.escuelaing.arep.app.util","l":"PrimeFinder"},{"p":"edu.escuelaing.arep.app.threads","l":"PrimeThread"},{"p":"edu.escuelaing.arep.app","l":"SparkWebApp"}]

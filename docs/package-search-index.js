@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"edu.escuelaing.arep.app"},{"l":"edu.escuelaing.arep.app.threads"},{"l":"edu.escuelaing.arep.app.util"}]
